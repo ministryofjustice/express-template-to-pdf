@@ -10,13 +10,13 @@ Serve PDF documents in express generated from a Pug template
 
 ## Installation
 ```bash
-npm install @mojdigitalstudio/express-pug-pdf --save
+npm install @ministryofjustice/express-pug-pdf --save
 ```
 
 ## Usage
 Specify the location of your views directory
 ```javascript
-const pugPdf = require('@mojdigitalstudio/express-pug-pdf')
+const pugPdf = require('@ministryofjustice/express-pug-pdf')
 
 app.use(pugPdf({ views: path.join(__dirname, 'views') }))
 ```
