@@ -18,7 +18,7 @@ app.use(pugPdf({ views: path.join(__dirname, 'views') }))
 Render a PDF from a pug template by specifying a template name and passing the data. In this example, the template views/helloWorld.pug will be used
 
 ```javascript
-app.use('/pdf', function(req, res){
+app.use('/pdf', (req, res) => {
     res.pugpdf('helloWorld', { message: 'Hello World!' });
 })
 ```
@@ -35,7 +35,7 @@ html
 To set the filename for the PDF when downloaded, pass the options object. The default filename is document.pdf
 
 ```javascript
-app.use('/pdf', function(req, res){
+app.use('/pdf', (req, res) => {
     res.pugpdf('helloWorld', { message: 'Hello World!' }, { filename: 'helloWorld.pdf' });
 })
 ```
@@ -57,7 +57,7 @@ const options = {
   },
 }
 
-app.use('/pdf', function(req, res){
+app.use('/pdf', (req, res) => {
     res.pugpdf('helloWorld', { message: 'Hello World!' }, options);
 })
 ```
