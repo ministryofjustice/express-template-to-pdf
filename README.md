@@ -7,6 +7,7 @@ Serve PDF documents in express generated from a Pug template
 npm install @mojdigitalstudio/express-pug-pdf --save
 ```
 
+## Usage
 Specify the location of your views directory
 ```javascript
 const pugPdf = require('@mojdigitalstudio/express-pug-pdf')
@@ -14,7 +15,6 @@ const pugPdf = require('@mojdigitalstudio/express-pug-pdf')
 app.use(pugPdf({ views: path.join(__dirname, 'views') }))
 ```
 
-## Usage
 Render a PDF from a pug template by specifying a template name and passing the data. In this example, the template views/helloWorld.pug will be used
 
 ```javascript
@@ -86,7 +86,7 @@ html(lang="en")
             A styled Heading
 ```
 
-Note that you could set the host and port dynamically from your enviroment config eg
+Or set the host (and port in dev environments) dynamically from environment config
 
 ```jade
 link(href= "#{domain}/path/styles.css", media="print", rel="stylesheet", type="text/css")
