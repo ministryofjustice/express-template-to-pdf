@@ -1,8 +1,14 @@
 const express = require('express')
-const pugPdf = require('../../index')
+const path = require('path')
+
+const pdfRenderer = require('../../index')
 
 const app = express()
-app.use(pugPdf({ views: './examples/helloWorld' }))
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'pug')
+
+app.use(pdfRenderer())
+
 app.use('/static', express.static('./examples/helloWorld'))
 
 const options = {
@@ -19,7 +25,9 @@ const options = {
 }
 
 app.use('/pdf', (req, res) => {
-  res.pugpdf('helloWorld', { message: 'Hello World!' }, options)
+  res.renderPDF('helloWorld', { title: 'Hello', message: 'Hello Pug!' }, options)
 })
 
-app.listen(3001)
+app.listen(3001, () => {
+  console.log('Listening to port 3001...')
+})
