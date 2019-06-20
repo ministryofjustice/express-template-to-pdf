@@ -1,6 +1,6 @@
+const express = require('express')
 const request = require('supertest')
 const pugPdf = require('../index')
-const express = require('express')
 
 describe('pugPdf', () => {
   let app
@@ -11,7 +11,7 @@ describe('pugPdf', () => {
 
   it('sets response headers for PDF', () => {
     app.use(pugPdf({ views: './test' }))
-    app.use('/pdf', function(req, res) {
+    app.use('/pdf', (req, res) => {
       res.pugpdf('helloWorld', { message: 'Hello World!' }, { filename: 'test.pdf' })
     })
 
@@ -25,7 +25,7 @@ describe('pugPdf', () => {
 
   it('uses default filename if none set', () => {
     app.use(pugPdf({ views: './test' }))
-    app.use('/pdf', function(req, res) {
+    app.use('/pdf', (req, res) => {
       res.pugpdf('helloWorld', { message: 'Hello World!' })
     })
 

@@ -1,5 +1,5 @@
-const pugPdf = require('../../index')
 const express = require('express')
+const pugPdf = require('../../index')
 
 const app = express()
 app.use(pugPdf({ views: './examples/helloWorld' }))
@@ -18,7 +18,7 @@ const options = {
   },
 }
 
-app.use('/pdf', function(req, res) {
+app.use('/pdf', (req, res) => {
   res.pugpdf('helloWorld', { message: 'Hello World!' }, options)
 })
 
