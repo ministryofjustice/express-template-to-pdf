@@ -1,5 +1,11 @@
 # express-pug-pdf
 
+![npm](https://img.shields.io/npm/v/@ministryofjustice/express-pug-pdf.svg)
+![NPM](https://img.shields.io/npm/l/@ministryofjustice/express-pug-pdf.svg)
+![GitHub issues](https://img.shields.io/github/issues/ministryofjustice/express-pug-pdf.svg)
+![npm](https://img.shields.io/npm/dm/@ministryofjustice/express-pug-pdf.svg)
+
+
 Serve PDF documents in express generated from a Pug template
 
 ## Installation
