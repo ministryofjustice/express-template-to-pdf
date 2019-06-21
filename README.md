@@ -6,7 +6,7 @@
 ![npm](https://img.shields.io/npm/dm/@ministryofjustice/express-pug-pdf.svg)
 
 
-Serve PDF documents in express generated from a Pug template
+Serve PDF documents in express generated from your template files
 
 ## Installation
 ```bash
@@ -16,33 +16,29 @@ npm install @ministryofjustice/express-pug-pdf --save
 ## Usage
 Specify the location of your views directory
 ```javascript
-const pugPdf = require('@ministryofjustice/express-pug-pdf')
+const pdfRenderer = require('@ministryofjustice/express-pug-pdf')
 
-app.use(pugPdf({ views: path.join(__dirname, 'views') }))
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'pug')
+...
+app.use(pdfRenderer())
 ```
 
-Render a PDF from a pug template by specifying a template name and passing the data. In this example, the template views/helloWorld.pug will be used
+Render a PDF from a template by specifying a template name and passing the data. In this example, the template views/helloWorld.pug will be used
 
 ```javascript
 app.use('/pdf', (req, res) => {
-    res.pugpdf('helloWorld', { message: 'Hello World!' });
+    res.renderPDF('helloWorld', { message: 'Hello World!' });
 })
 ```
 
-Using pug templates from the views directory
-
-```jade
-html
-  body
-    h1= message
-```
 
 ### Customising the output
 To set the filename for the PDF when downloaded, pass the options object. The default filename is document.pdf
 
 ```javascript
 app.use('/pdf', (req, res) => {
-    res.pugpdf('helloWorld', { message: 'Hello World!' }, { filename: 'helloWorld.pdf' });
+    res.renderPDF('helloWorld', { message: 'Hello World!' }, { filename: 'helloWorld.pdf' });
 })
 ```
 
@@ -64,13 +60,12 @@ const options = {
 }
 
 app.use('/pdf', (req, res) => {
-    res.pugpdf('helloWorld', { message: 'Hello World!' }, options);
+    res.renderPDF('helloWorld', { message: 'Hello World!' }, options);
 })
+
 ```
-
-
 ## How it works
-express-pug-pdf uses Pug to render the Pug template into HTML. Then it passes the HTML to html-pdf to generate the PDF.
+express-pug-pdf renders your existing templates to formated html. Then it passes the HTML to html-pdf to generate the PDF.
 The PDF is returned in the response as binary data with content type application/pdf
 
 ## CSS
@@ -102,4 +97,4 @@ Note that PhantomJS will use "print" media CSS rules when rendering PDF. Instead
 options to control margins - http://phantomjs.org/api/webpage/property/paper-size.html
 
 ## Example
-run `node examples/helloWorld/index.js` then browse to http://localhost:3001/pdf
+run `node examples/pug/index.js` then browse to http://localhost:3001/pdf

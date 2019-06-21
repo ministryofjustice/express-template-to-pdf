@@ -1,8 +1,6 @@
-const pug = require('pug')
-const path = require('path')
 const pdf = require('html-pdf')
 
-module.exports = pugPdf
+module.exports = pdfRenderer
 
 async function send(res, options, html) {
   res.header('Content-Type', 'application/pdf')
@@ -19,21 +17,20 @@ async function send(res, options, html) {
   })
 }
 
-function pugPdf(config) {
-  if (!config || !config.views) {
-    throw new Error('express-pug-pdf requires the views directory configuration')
+function render(res, res, next) {
+  return (view, pageData, options = { filename: 'document.pdf' }) => {
+    res.render(view, pageData, (error, html) => {
+      if (error) {
+        throw error
+      }
+      send(res, options, html)
+    })
   }
+}
 
-  function pdfFromPug(view, pageData, options = { filename: 'document.pdf' }) {
-    const res = this
-    const pugPath = path.resolve(`${config.views}/${view}.pug`)
-    const html = pug.renderFile(pugPath, pageData, null)
-
-    send(res, options, html)
-  }
-
+function pdfRenderer() {
   return (req, res, next) => {
-    res.pugpdf = pdfFromPug
+    res.renderPDF = render(req, res, next)
     next()
   }
 }
