@@ -17,6 +17,7 @@ async function send(res, options, html) {
   })
 }
 
+// eslint-disable-next-line no-unused-vars
 function render(req, res, next) {
   return (view, pageData, options = { filename: 'document.pdf' }) => {
     res.render(view, pageData, (error, html) => {

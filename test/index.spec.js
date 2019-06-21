@@ -60,9 +60,12 @@ describe('pdfRenderer', () => {
     app.use(pdfRenderer())
 
     app.use('/pdf', (req, res) => {
-      res.renderPDF('non-existant-template', { message: 'Hello World!' })
+      res.renderPDF('non-existant-template', {
+        message: 'Hello World!',
+      })
     })
 
+    // eslint-disable-next-line no-unused-vars
     app.use((error, req, res, next) => {
       res.status(500).send('Something went wrong')
     })

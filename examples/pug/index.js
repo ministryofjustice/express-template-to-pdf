@@ -29,5 +29,6 @@ app.use('/pdf', (req, res) => {
 })
 
 app.listen(3001, () => {
+  // eslint-disable-next-line no-console
   console.log('Listening to port 3001...')
 })
