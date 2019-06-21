@@ -17,7 +17,7 @@ async function send(res, options, html) {
   })
 }
 
-function render(res, res, next) {
+function render(req, res, next) {
   return (view, pageData, options = { filename: 'document.pdf' }) => {
     res.render(view, pageData, (error, html) => {
       if (error) {
