@@ -1,7 +1,6 @@
 const express = require('express')
 const path = require('path')
-const nunjucks = require('nunjucks')
-
+const nunjucks = require('nunjucks') // eslint-disable-line import/no-extraneous-dependencies
 const pdfRenderer = require('../../index')
 
 const app = express()
@@ -35,5 +34,6 @@ app.use('/pdf', (req, res) => {
 })
 
 app.listen(3001, () => {
+  // eslint-disable-next-line no-console
   console.log('Listening to port 3001...')
 })
