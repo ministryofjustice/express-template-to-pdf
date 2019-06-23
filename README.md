@@ -2,9 +2,9 @@
 
 ![npm](https://img.shields.io/npm/v/@ministryofjustice/express-template-to-pdf.svg)
 ![NPM](https://img.shields.io/npm/l/@ministryofjustice/express-template-to-pdf.svg)
+![CircleCI](https://img.shields.io/circleci/build/github/ministryofjustice/express-template-to-pdf.svg?token=28e722a92c0624929ca5456f9944c716f0c29ad1)
 ![GitHub issues](https://img.shields.io/github/issues/ministryofjustice/express-template-to-pdf.svg)
 ![npm](https://img.shields.io/npm/dm/@ministryofjustice/express-template-to-pdf.svg)
-
 
 Serve PDF documents in express generated from your template files
 
