@@ -1,22 +1,22 @@
-# express-pug-pdf
+# express-template-to-pdf
 
-![npm](https://img.shields.io/npm/v/@ministryofjustice/express-pug-pdf.svg)
-![NPM](https://img.shields.io/npm/l/@ministryofjustice/express-pug-pdf.svg)
-![GitHub issues](https://img.shields.io/github/issues/ministryofjustice/express-pug-pdf.svg)
-![npm](https://img.shields.io/npm/dm/@ministryofjustice/express-pug-pdf.svg)
+![npm](https://img.shields.io/npm/v/@ministryofjustice/express-template-to-pdf.svg)
+![NPM](https://img.shields.io/npm/l/@ministryofjustice/express-template-to-pdf.svg)
+![GitHub issues](https://img.shields.io/github/issues/ministryofjustice/express-template-to-pdf.svg)
+![npm](https://img.shields.io/npm/dm/@ministryofjustice/express-template-to-pdf.svg)
 
 
 Serve PDF documents in express generated from your template files
 
 ## Installation
 ```bash
-npm install @ministryofjustice/express-pug-pdf --save
+npm install @ministryofjustice/express-template-to-pdf --save
 ```
 
 ## Usage
 Specify the location of your views directory
 ```javascript
-const pdfRenderer = require('@ministryofjustice/express-pug-pdf')
+const pdfRenderer = require('@ministryofjustice/express-template-to-pdf')
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
@@ -65,7 +65,7 @@ app.use('/pdf', (req, res) => {
 
 ```
 ## How it works
-express-pug-pdf renders your existing templates to formated html. Then it passes the HTML to html-pdf to generate the PDF.
+express-template-to-pdf renders your existing templates to formated html. Then it passes the HTML to html-pdf to generate the PDF.
 The PDF is returned in the response as binary data with content type application/pdf
 
 ## CSS

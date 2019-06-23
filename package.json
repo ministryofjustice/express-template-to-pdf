@@ -1,7 +1,7 @@
 {
-  "name": "@ministryofjustice/express-pug-pdf",
-  "version": "1.2.0",
-  "description": "Generates PDF from PUG templates in Express routes",
+  "name": "@ministryofjustice/express-template-to-pdf",
+  "version": "1.0.0",
+  "description": "Generates PDF from templates in Express routes",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
@@ -10,19 +10,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ministryofjustice/express-pug-pdf.git"
+    "url": "git+https://github.com/ministryofjustice/express-template-to-pdf.git"
   },
   "keywords": [
     "express",
+    "template",
+    "pdf",
     "pug",
-    "pdf"
+    "nunjucks"
   ],
-  "author": "Ministry of Justice - Alistair Todd - ali@atodd.dev",
+  "author": "Ministry of Justice - Alistair Todd, Steven Bapaga",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ministryofjustice/express-pug-pdf/issues"
+    "url": "https://github.com/ministryofjustice/express-template-to-pdf/issues"
   },
-  "homepage": "https://github.com/ministryofjustice/express-pug-pdf#readme",
+  "homepage": "https://github.com/ministryofjustice/express-template-to-pdf#readme",
   "dependencies": {
     "express": "^4.17.1",
     "html-pdf": "^2.2.0"
