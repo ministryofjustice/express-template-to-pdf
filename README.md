@@ -20,7 +20,7 @@ const pdfRenderer = require('@ministryofjustice/express-template-to-pdf')
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
-...
+
 app.use(pdfRenderer())
 ```
 
@@ -98,3 +98,8 @@ options to control margins - http://phantomjs.org/api/webpage/property/paper-siz
 
 ## Example
 run `node examples/pug/index.js` then browse to http://localhost:3001/pdf
+
+
+---
+
+_Authors: Alistair Todd, Steven Bapaga_
