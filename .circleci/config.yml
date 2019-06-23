@@ -37,7 +37,7 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: unit tests
-          command: npm run test
+          command: npm run test-report
           environment:
             MOCHA_FILE: ./reports/test-results.xml
       - store_test_results:
