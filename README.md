@@ -1,10 +1,12 @@
 # express-template-to-pdf
 
-![npm](https://img.shields.io/npm/v/@ministryofjustice/express-template-to-pdf.svg)
-![NPM](https://img.shields.io/npm/l/@ministryofjustice/express-template-to-pdf.svg)
-![CircleCI](https://img.shields.io/circleci/build/github/ministryofjustice/express-template-to-pdf.svg?token=28e722a92c0624929ca5456f9944c716f0c29ad1)
-![GitHub issues](https://img.shields.io/github/issues/ministryofjustice/express-template-to-pdf.svg)
-![npm](https://img.shields.io/npm/dm/@ministryofjustice/express-template-to-pdf.svg)
+[![NPM Version][npm-image]][npm-url]
+[![Licence][licence-image]][npm-url]
+[![Build][build-image]][build-url]
+[![Issues][issues-image]][issues-url]
+[![Download][download-image]][npm-url]
+
+
 
 Serve PDF documents in express generated from your template files
 
@@ -100,6 +102,19 @@ options to control margins - http://phantomjs.org/api/webpage/property/paper-siz
 run `node examples/pug/index.js` then browse to http://localhost:3001/pdf
 
 
+## License
+
+  [MIT](LICENSE)
+  
 ---
 
 _Authors: Alistair Todd, Steven Bapaga_
+
+[npm-image]: https://img.shields.io/npm/v/@ministryofjustice/express-template-to-pdf.svg
+[npm-url]: https://www.npmjs.com/package/@ministryofjustice/express-template-to-pdf
+[licence-image]: https://img.shields.io/npm/l/@ministryofjustice/express-template-to-pdf.svg
+[build-image]: https://img.shields.io/circleci/build/github/ministryofjustice/express-template-to-pdf.svg?token=28e722a92c0624929ca5456f9944c716f0c29ad1
+[build-url]: https://circleci.com/gh/ministryofjustice/express-template-to-pdf
+[issues-image]: https://img.shields.io/github/issues/ministryofjustice/express-template-to-pdf.svg
+[issues-url]: https://github.com/ministryofjustice/express-template-to-pdf/issues
+[download-image]: https://img.shields.io/npm/dm/@ministryofjustice/express-template-to-pdf.svg
