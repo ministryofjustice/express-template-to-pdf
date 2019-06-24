@@ -8,7 +8,7 @@
 
 
 
-Serve PDF documents in express generated from your template files
+Serve PDF documents in express generated from templates
 
 ## Installation
 ```bash
@@ -67,7 +67,7 @@ app.use('/pdf', (req, res) => {
 
 ```
 ## How it works
-express-template-to-pdf renders your existing templates to formated html. Then it passes the HTML to html-pdf to generate the PDF.
+express-template-to-pdf renders your existing templates to formatted html. Then it passes the HTML to html-pdf to generate the PDF.
 The PDF is returned in the response as binary data with content type application/pdf
 
 ## CSS
