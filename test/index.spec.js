@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const request = require('supertest')
+const pdfParse = require('pdf-parse')
 
 const pdfRenderer = require('../index')
 
@@ -76,5 +77,18 @@ describe('pdfRenderer', () => {
       .then(res => {
         expect(res.text).to.be.equal('Something went wrong')
       })
+  })
+
+  it('renders template content into the PDF buffer', async () => {
+    app.use(pdfRenderer())
+    app.use('/pdf', (req, res) => {
+      res.renderPDF('simple', { message: 'variable' })
+    })
+
+    const res = await request(app).get('/pdf')
+    const pdf = await pdfParse(res.body)
+
+    expect(pdf.numpages).to.eql(1)
+    expect(pdf.text).to.eql('\n\nfixed\nvariable')
   })
 })
