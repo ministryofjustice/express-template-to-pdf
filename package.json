@@ -1,6 +1,6 @@
 {
   "name": "@ministryofjustice/express-template-to-pdf",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generates PDF from templates in Express routes",
   "main": "index.js",
   "scripts": {
