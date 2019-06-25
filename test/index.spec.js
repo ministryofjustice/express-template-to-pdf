@@ -89,6 +89,6 @@ describe('pdfRenderer', () => {
     const pdf = await pdfParse(res.body)
 
     expect(pdf.numpages).to.eql(1)
-    expect(pdf.text).to.eql('\n\nfixed\nvariable')
+    expect(pdf.text).contains('\n\nfixed\nvariable')
   })
 })
