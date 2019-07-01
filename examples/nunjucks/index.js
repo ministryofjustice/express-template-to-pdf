@@ -7,10 +7,6 @@ const app = express()
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'html')
-nunjucks.configure('views', {
-  express: app,
-  autoescape: true,
-})
 
 nunjucks.configure(path.join(__dirname, 'views'), {
   express: app,
