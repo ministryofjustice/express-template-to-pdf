@@ -14,13 +14,13 @@ nunjucks.configure('views', {
 
 app.use(pdfRenderer())
 
-app.use('/static', express.static('./examples/helloWorld'))
+app.use('/static', express.static('./examples/css'))
 
 const options = {
   filename: 'helloWorld.pdf',
   pdfOptions: {
     format: 'A4',
-    border: {
+    margin: {
       top: '40px',
       bottom: '20px',
       left: '40px',

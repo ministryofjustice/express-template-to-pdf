@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/ministryofjustice/express-template-to-pdf#readme",
   "dependencies": {
-    "html-pdf": "^2.2.0"
+    "pdf-puppeteer": "^1.1.6"
   },
   "devDependencies": {
     "chai": "^4.2.0",

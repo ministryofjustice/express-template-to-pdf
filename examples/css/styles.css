@@ -1,0 +1,15 @@
+.myStyle {
+  color: red;
+}
+
+.pagebreak {
+  page-break-before: always;
+}
+
+#pageHeader {
+  font-family: "nta", Arial, helvetica, sans-serif;
+  border: 1px solid grey;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+}
