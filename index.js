@@ -7,13 +7,17 @@ async function send(res, options, html) {
   res.header('Content-Transfer-Encoding', 'binary')
   res.header('Content-Disposition', `inline; filename=${options.filename}`)
 
-  await toPdf(
-    html,
-    pdf => {
-      res.send(pdf)
-    },
-    options.pdfOptions
-  )
+  try {
+    await toPdf(
+      html,
+      pdf => {
+        res.send(pdf)
+      },
+      options.pdfOptions
+    )
+  } catch (error) {
+    throw error
+  }
 }
 
 // eslint-disable-next-line no-unused-vars
