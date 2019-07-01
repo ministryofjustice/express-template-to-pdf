@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/ministryofjustice/express-template-to-pdf
   docker:
-    - image: circleci/node:10
+    - image: circleci/node:latest-browsers
 
 version: 2
 jobs:
