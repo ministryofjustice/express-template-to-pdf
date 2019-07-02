@@ -34,6 +34,13 @@ app.use('/pdf', (req, res) => {
 })
 ```
 
+### Configuring Puppeteer
+Pass args to the Puppeteer launch as follows. See [Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/v1.18.1/docs/api.md#puppeteerlaunchoptions) for more info
+```javascript
+const puppeteerArgs = { args: ['--no-sandbox', '--disable-setuid-sandbox'] }
+app.use(pdfRenderer(puppeteerArgs))
+```
+
 
 ### Customising the output
 To set the filename for the PDF when downloaded, pass the options object. The default filename is document.pdf
@@ -44,8 +51,8 @@ app.use('/pdf', (req, res) => {
 })
 ```
 
-To customise the PDF document, pass additional pdfOptions. The PDF creation uses https://www.npmjs.com/package/pdf-puppeteer.
-pdfOptions are passed through to pdf-puppeteer, which in turn passes them to Puppeteer. See the [Puppeteer page.pdf options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagepdfoptions)
+To customise the PDF document, pass additional pdfOptions. The PDF creation uses https://www.npmjs.com/package/puppeteer.
+pdfOptions are passed through to Puppeteer. See the [Puppeteer page.pdf options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagepdfoptions)
 
 ```javascript
 const options = {
@@ -64,15 +71,37 @@ const options = {
 app.use('/pdf', (req, res) => {
     res.renderPDF('helloWorld', { message: 'Hello World!' }, options);
 })
-
 ```
+
+### Using Puppeteer and headless chrome in Docker
+The bundled Chromium used by Puppeteer does not have the necessary shared libraries. Running in Docker will require installing the missing
+dependencies in your dockerfile. See [Puppeteer troubleshooting](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker)
+
+eg at minimum you will need this in your dockerfile:
+
+```dockerfile
+# Install latest chrome dev package libs so that the bundled version of Chromium installed by Puppeteer will work
+# https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+    && apt-get update \
+    && apt-get install -y google-chrome-unstable ttf-freefont \
+      --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+```
+
+Note also that there are difficulties with the Chrome sandbox. If running as the root user, you must use the --no-sandbox option.
+The sandbox may also be missing from Linux environments. If you trust the html content you are opening, as is likely to be the case if you 
+are rendering your own templates and not accessing external sites or loading user-submitted content, then you can use the --no-sandbox option.
+See [Puppeteer troubleshooting](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox)
+
+
 ## How it works
-express-template-to-pdf renders your existing templates to formatted html. Then it passes the HTML to pdf-puppeteer to generate the PDF.
+express-template-to-pdf renders your existing templates to formatted html. Then it passes the HTML to puppeteer to generate the PDF.
 The PDF is returned in the response as binary data with content type application/pdf
 
 ## CSS
-pdf-puppeteer uses Puppeteer to generate the PDF. Puppeteer needs to be able to see any stylesheets linked in your template.
-This means using an absolute url
+Puppeteer needs to be able to see any stylesheets linked in your template. This means using an absolute url
 
 ```jade
 doctype html
