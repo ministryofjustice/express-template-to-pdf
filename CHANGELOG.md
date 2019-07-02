@@ -1,6 +1,9 @@
 # 2.0.0
 ## Breaking Changes
-* switch to pdf-puppeteer instead of html-pdf
+* switch to pdf-puppeteer instead of html-pdf 
+
+The format for options is different. Use margin instead of border, and other puppeteer options.
+
 ## Minor
 * add examples for repeating headers and footers
 * fix examples
