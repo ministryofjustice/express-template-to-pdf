@@ -28,6 +28,7 @@ const options = {
       right: '20px',
     },
   },
+  puppeteerArgs: { args: ['--no-sandbox', '--disable-setuid-sandbox'] },
 }
 
 app.use('/pdf', (req, res) => {

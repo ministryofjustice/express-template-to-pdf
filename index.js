@@ -12,7 +12,8 @@ async function send(res, options, html) {
     pdf => {
       res.send(pdf)
     },
-    options.pdfOptions
+    options.pdfOptions,
+    options.puppeteerArgs || null
   )
 }
 
