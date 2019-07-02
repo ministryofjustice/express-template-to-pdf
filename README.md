@@ -44,15 +44,15 @@ app.use('/pdf', (req, res) => {
 })
 ```
 
-To customise the PDF document, pass additional pdfOptions. The PDF creation uses https://www.npmjs.com/package/html-pdf.
-pdfOptions are passed through to html-pdf
+To customise the PDF document, pass additional pdfOptions. The PDF creation uses https://www.npmjs.com/package/pdf-puppeteer.
+pdfOptions are passed through to pdf-puppeteer, which in turn passes them to Puppeteer. See the [Puppeteer page.pdf options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagepdfoptions)
 
 ```javascript
 const options = {
   filename: 'helloWorld.pdf',
   pdfOptions: {
     format: 'A4',
-    border: {
+    margin: {
       top: '40px',
       bottom: '20px',
       left: '40px',
@@ -67,11 +67,11 @@ app.use('/pdf', (req, res) => {
 
 ```
 ## How it works
-express-template-to-pdf renders your existing templates to formatted html. Then it passes the HTML to html-pdf to generate the PDF.
+express-template-to-pdf renders your existing templates to formatted html. Then it passes the HTML to pdf-puppeteer to generate the PDF.
 The PDF is returned in the response as binary data with content type application/pdf
 
 ## CSS
-html-pdf uses PhantomJS to generate the PDF. PhantomJS needs to be able to see any stylesheets linked in your template.
+pdf-puppeteer uses Puppeteer to generate the PDF. Puppeteer needs to be able to see any stylesheets linked in your template.
 This means using an absolute url
 
 ```jade
@@ -95,11 +95,56 @@ Or set the host (and port in dev environments) dynamically from environment conf
 link(href= "#{domain}/path/styles.css", media="print", rel="stylesheet", type="text/css")
 ```
 
-Note that PhantomJS will use "print" media CSS rules when rendering PDF. Instead of @page CSS rules, use the PhantomJS paperSize
-options to control margins - http://phantomjs.org/api/webpage/property/paper-size.html
+Note that Puppeteer will use "print" media CSS rules when rendering PDF.
+You can use @page CSS rules by setting the preferCSSPageSize option, otherwise use the Puppeteer format and margin options.
+
+### Page breaks
+Page breaks can be controlled using css, for example to avoid breaking inside a block or to force a break after, you could use:
+
+```css
+.no-break {
+    page-break-inside: avoid;
+}
+.pagebreak {
+  page-break-before: always;
+}
+```
+
+### Headers and footers
+You can create repeating headers and footers on each page using the Pupeteer page.pdf options headerTemplate and footerTemplate.
+
+Note that the headers and footers can not see external stylesheets and must use inline styles.
+
+Also note that the headers and footers will not be visible unless you set page margins to ensure that page content does not sit over them.
+
+Puppeteer exposes page numbering classes. See the [Puppeteer page.pdf options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagepdfoptions)
+
+In this example, the header and footer blocks are given a height of 20px, and the top and bottom margins are made bigger than that.
+
+```javascript
+const headerFooterStyle =
+  'font-family: Arial; font-size: 10px; font-weight: bold; width: 100%; height: 20px; text-align: center;'
+  
+const options = {
+  filename: 'helloWorld.pdf',
+  pdfOptions: {
+    displayHeaderFooter: true,
+    headerTemplate: `<span style="${headerFooterStyle}">Repeating header on every page</span>`,
+    footerTemplate: `<span style="${headerFooterStyle}">Repeating footer on page <span class="pageNumber"></span> of <span class="totalPages"></span></span>`,      
+    format: 'A4',
+    margin: {
+      top: '40px',
+      bottom: '60px',
+      left: '40px',
+      right: '20px',
+    },
+  },
+}
+```
+
 
 ## Example
-run `node examples/pug/index.js` then browse to http://localhost:3001/pdf
+run `node examples/pug/index.js` or ``node examples/nunjucks/index.js`` then browse to http://localhost:3001/pdf
 
 
 ## License

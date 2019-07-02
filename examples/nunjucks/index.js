@@ -7,20 +7,21 @@ const app = express()
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'html')
-nunjucks.configure('views', {
+
+nunjucks.configure(path.join(__dirname, 'views'), {
   express: app,
   autoescape: true,
 })
 
 app.use(pdfRenderer())
 
-app.use('/static', express.static('./examples/helloWorld'))
+app.use('/static', express.static('./examples/css'))
 
 const options = {
   filename: 'helloWorld.pdf',
   pdfOptions: {
     format: 'A4',
-    border: {
+    margin: {
       top: '40px',
       bottom: '20px',
       left: '40px',

@@ -1,4 +1,4 @@
-const pdf = require('html-pdf')
+const toPdf = require('pdf-puppeteer')
 
 module.exports = pdfRenderer
 
@@ -7,14 +7,13 @@ async function send(res, options, html) {
   res.header('Content-Transfer-Encoding', 'binary')
   res.header('Content-Disposition', `inline; filename=${options.filename}`)
 
-  await pdf.create(html, options.pdfOptions).toStream((error, stream) => {
-    if (error) {
-      throw error
-    } else {
-      stream.pipe(res)
-      stream.on('end', () => res.end())
-    }
-  })
+  await toPdf(
+    html,
+    pdf => {
+      res.send(pdf)
+    },
+    options.pdfOptions
+  )
 }
 
 // eslint-disable-next-line no-unused-vars

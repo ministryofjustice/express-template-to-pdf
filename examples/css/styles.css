@@ -1,0 +1,7 @@
+.myStyle {
+  color: red;
+}
+
+.pagebreak {
+  page-break-before: always;
+}
