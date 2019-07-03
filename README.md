@@ -48,8 +48,10 @@ Default options:
 { args: ['--no-sandbox', '--disable-setuid-sandbox'] }
 ``` 
 
-Pass options to the pdfRendered function to replace the defaults. Pass an empty object if you only want to remove the defaults.
-See [Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/v1.18.1/docs/api.md#puppeteerlaunchoptions) for more info
+Pass options to the pdfRenderer function to replace the defaults. Pass an empty object if you only want to remove the defaults.
+
+For example, to remove the above defaults and change the default Puppeteer timeout, you could pass options like this.
+See [Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/v1.18.1/docs/api.md#puppeteerlaunchoptions) for more info.
 ```javascript
 app.use(pdfRenderer( { timeout:60000 } ))
 ```
