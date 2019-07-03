@@ -35,10 +35,23 @@ app.use('/pdf', (req, res) => {
 ```
 
 ### Configuring Puppeteer
-Pass args to the Puppeteer launch as follows. See [Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/v1.18.1/docs/api.md#puppeteerlaunchoptions) for more info
+Puppeteer launch options (including Chromium flags via the args array) can be passed to the pdfRenderer function and used on every render.
+If no options are specified the default options below will be used.
+
+**Note: The default puppeteer launch options pass flags to disable the Chrome sandbox**
+
+This is one way to enable running Puppeteer in Docker but may be a security issue if you are loading untrusted content, in which case you should override these defaults.
+See [Puppeteer troubleshooting](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox) for further info on the use of --no-sandbox
+
+Default options:
 ```javascript
-const puppeteerArgs = { args: ['--no-sandbox', '--disable-setuid-sandbox'] }
-app.use(pdfRenderer(puppeteerArgs))
+{ args: ['--no-sandbox', '--disable-setuid-sandbox'] }
+``` 
+
+Pass options to the pdfRendered function to replace the defaults. Pass an empty object if you only want to remove the defaults.
+See [Puppeteer launch options](https://github.com/GoogleChrome/puppeteer/blob/v1.18.1/docs/api.md#puppeteerlaunchoptions) for more info
+```javascript
+app.use(pdfRenderer( { timeout:60000 } ))
 ```
 
 

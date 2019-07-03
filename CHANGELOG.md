@@ -1,3 +1,9 @@
+# 2.1.0
+* Remove pdf-puppeteer and use Puppeteer directly
+* Specify default Puppeteer launch options to run without sandbox
+* Document usage in Docker
+* Document how to use repeating headers and footers
+
 # 2.0.0
 ## Breaking Changes
 * switch to pdf-puppeteer instead of html-pdf 

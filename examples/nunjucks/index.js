@@ -13,7 +13,7 @@ nunjucks.configure(path.join(__dirname, 'views'), {
   autoescape: true,
 })
 
-app.use(pdfRenderer())
+app.use(pdfRenderer({}))
 
 app.use('/static', express.static('./examples/css'))
 

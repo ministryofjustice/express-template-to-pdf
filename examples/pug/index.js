@@ -7,8 +7,7 @@ const app = express()
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
-const puppeteerArgs = { args: ['--no-sandbox', '--disable-setuid-sandbox'] }
-app.use(pdfRenderer(puppeteerArgs))
+app.use(pdfRenderer())
 
 app.use('/static', express.static('./examples/css'))
 
