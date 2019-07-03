@@ -23,7 +23,7 @@ function render(req, res, next, puppeteerOptions) {
       if (error) {
         throw error
       }
-      send(puppeteerOptions, res, options, html)
+      return send(puppeteerOptions, res, options, html)
     })
   }
 }
